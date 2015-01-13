@@ -2,9 +2,6 @@ var Twit = require('twit');
 var config = require('./config.js');
 var T = new Twit(config);
 
-var retweetQueue = [];
-
-//
 //  tweet 'hello world!'
 //
 /*
@@ -25,7 +22,7 @@ stream.on('tweet', function (tweet) {
     console.log("Tweet Found: (@",tweet.user.screen_name, ") says '", tweet.text, "'");
     if(tweet.user.screen_name != "EmberDocBot")
     {
-        T.post('statuses/retweet/:id', { id: tweet.id }, function (error, data, response) {
+        T.post('statuses/retweet/:id.json', { id: tweet.id_str  }, function (error, data, response) {
             if(error)
                 console.error("ERROR:",error);
             if(data)
